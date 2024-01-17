@@ -12,6 +12,9 @@ int id = 1;
 int tpeca[3][3];
 int X = 2;
 int Y = 3;
+int seconds = 0;
+
+
 
 void tetraminoe(int id, int modoRotacao, int X, int Y);
 
@@ -58,6 +61,9 @@ int main () {
     while (!(WindowShouldClose())){ 
 
         BeginDrawing();
+        seconds++;
+        bool down = IsKeyPressed(264);
+        bool right = IsKeyPressed(262);
         
 
             for(int linhas = 0; linhas < 20; linhas++){
@@ -84,7 +90,20 @@ int main () {
 
             tetraminoe(id, modoRotacao, X, Y);
 
-
+            if(IsKeyPressed(264)){
+                Y++;
+            } 
+            if(IsKeyPressed(262)){
+                X++;
+            }
+            if(IsKeyPressed(263)){
+                X--;
+            }
+            if(seconds == 60){
+                seconds = 0;
+                Y++;
+            }
+            
 
             ClearBackground(RAYWHITE);
 
