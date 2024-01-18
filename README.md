@@ -1,9 +1,6 @@
-# Raylib C++ Starter Template
+# Raylib C++ Tetris
 
-Raylib C++ Starter Template for Visual Studio Code on Windows.
-
-It works with raylib version 4.5.
-Tested on both Windows 10 and Windows 11.
+This is a project in C++ using the raylib code library to make Tetris, one of simples and popular game in history.
 
 
 
