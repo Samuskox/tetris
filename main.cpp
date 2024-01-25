@@ -369,6 +369,7 @@ void move_T_Down(){
     for(int i = 19; i >= 0; i--){
         for(int j = 9; j >= 0; j--){
             if(grade[i][j] < 0 && countdown < 4){
+                cout << "NAO TA FUNFANDO";
                 countdown++;
                 grade[i][j] = 0;
                 grade[i + 1][j] = id;
