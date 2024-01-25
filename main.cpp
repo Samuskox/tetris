@@ -33,7 +33,7 @@ int X = 3;
 int Y = 5;
 int seconds = 0;
 
-
+int countdown = 0;
 
 void tetraminoe(int id, int X, int Y);
 
@@ -87,6 +87,13 @@ int main () {
         }
         std::cout << endl;
     }
+
+    // for(int linhas = 19; linhas >= 0; linhas--){
+    //     for(int colunas = 9; colunas >= 0; colunas--){
+    //         std::cout << grade[linhas][colunas] << " ";
+    //     }
+    //     std::cout << endl;
+    // }
 
 
     // for(int linha = 0; linha < 20; linha++){
@@ -157,21 +164,21 @@ int main () {
         if(seconds == 60){
             seconds = 0;
             // id = GetRandomValue(1,7);
-            if(id==4 && Y < 19){
-                if(can_Move_T_Down()){
+            if(id == -4 && Y < 19){
+                // if(can_Move_T_Down()){
                     move_T_Down();
-                }
-            } else if(id==2 && (Y+1)<19){
+                // }
+            } else if(id == -2 && (Y+1) < 19){
                 move_Square_Down();
-            } else if(id==1 && (Y + 2) < 19){
+            } else if(id == -1 && (Y + 2) < 19){
                 move_I_Down();
-            } else if(id==3 && Y < 19){
+            } else if(id == -3 && Y < 19){
                 move_S_Down();
-            } else if(id==5 && Y < 19){
+            } else if(id == -5 && Y < 19){
                 move_L_Down();
-            } else if(id==6 && Y < 19){
+            } else if(id == -6 && Y < 19){
                 move_Z_Down();
-            } else if(id==7 && Y < 19){
+            } else if(id == -7 && Y < 19){
                 move_J_Down();
             }
            
@@ -297,49 +304,96 @@ void tetraminoe(int id, int X, int Y){
 
 //MOVE T
 void move_T_Left(){
-                grade[Y][X] = 0;
-                grade[Y][X-1] = 0;
-                grade[Y][1+X] = 0;
-                grade[Y-1][X] = 0;
-                X--;
-                grade[Y][X] = -4;
-                grade[Y][X-1] = -4;
-                grade[Y][1+X] = -4;
-                grade[Y-1][X] = -4;
+    countdown = 0;
+    for(int i = 0; i < 20; i++){
+        for(int j = 0; j < 10; j++){
+            if(grade[i][j] < 0 && countdown < 4){
+                countdown++;
+                grade[i][j] = 0;
+                grade[i][j - 1] = id;
+            }
+        }
+    }
+    countdown = 0;
+    for(int linhas = 0; linhas < 20; linhas++){
+        for(int colunas = 0; colunas < 10; colunas++){
+            std::cout << grade[linhas][colunas] << " ";
+        }
+        std::cout << endl;
+    }
+    std::cout << endl;
+                // grade[Y][X] = 0;
+                // grade[Y][X-1] = 0;
+                // grade[Y][1+X] = 0;
+                // grade[Y-1][X] = 0;
+                // X--;
+                // grade[Y][X] = -4;
+                // grade[Y][X-1] = -4;
+                // grade[Y][1+X] = -4;
+                // grade[Y-1][X] = -4;
 }
 
 void move_T_Right(){
-                grade[Y][X] = 0;
-                grade[Y][X-1] = 0;
-                grade[Y][1+X] = 0;
-                grade[Y-1][X] = 0;
-                X++;
-                grade[Y][X] = -4;
-                grade[Y][X-1] = -4;
-                grade[Y][1+X] = -4;
-                grade[Y-1][X] = -4;
+    countdown = 0;
+    for(int i = 19; i >= 0; i--){
+        for(int j = 9; j >= 0; j--){
+            if(grade[i][j] < 0 && countdown < 4){
+                countdown++;
+                grade[i][j] = 0;
+                grade[i][j + 1] = id;
+            }
+        }
+    }
+    countdown = 0;
+    for(int linhas = 0; linhas < 20; linhas++){
+        for(int colunas = 0; colunas < 10; colunas++){
+            std::cout << grade[linhas][colunas] << " ";
+        }
+        std::cout << endl;
+    }
+    std::cout << endl;
+
+                // grade[Y][X] = 0;
+                // grade[Y][X-1] = 0;
+                // grade[Y][1+X] = 0;
+                // grade[Y-1][X] = 0;
+                // X++;
+                // grade[Y][X] = -4;
+                // grade[Y][X-1] = -4;
+                // grade[Y][1+X] = -4;
+                // grade[Y-1][X] = -4;
 }
 
 void move_T_Down(){
-    // for(int i = 0; i < 20; i++){
-    //     for(int j = 0; j < 10; j++){
-    //         if(grade[i][j] < 0){
-    //             grade[i][j] = 0;
-    //             grade[i + 1][j] = id;
-    //         }
-    //     }
-    // }
-                if(can_Move_T_Down()){
-                    grade[Y][X] = 0;
-                    grade[Y][X-1] = 0;
-                    grade[Y][1+X] = 0;
-                    grade[Y-1][X] = 0;
-                    Y++;
-                    grade[Y][X] = -4;
-                    grade[Y][X-1] = -4;
-                    grade[Y][1+X] = -4;
-                    grade[Y-1][X] = -4;
-                }
+    countdown = 0;
+    for(int i = 19; i >= 0; i--){
+        for(int j = 9; j >= 0; j--){
+            if(grade[i][j] < 0 && countdown < 4){
+                countdown++;
+                grade[i][j] = 0;
+                grade[i + 1][j] = id;
+            }
+        }
+    }
+    countdown = 0;
+    for(int linhas = 0; linhas < 20; linhas++){
+        for(int colunas = 0; colunas < 10; colunas++){
+            std::cout << grade[linhas][colunas] << " ";
+        }
+        std::cout << endl;
+    }
+    std::cout << endl;
+                // if(can_Move_T_Down()){
+                //     grade[Y][X] = 0;
+                //     grade[Y][X-1] = 0;
+                //     grade[Y][1+X] = 0;
+                //     grade[Y-1][X] = 0;
+                //     Y++;
+                //     grade[Y][X] = -4;
+                //     grade[Y][X-1] = -4;
+                //     grade[Y][1+X] = -4;
+                //     grade[Y-1][X] = -4;
+                // }
 }
 
 //MOVE SQUARE
