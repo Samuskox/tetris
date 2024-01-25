@@ -6,8 +6,8 @@ using namespace std;
 
 int tamanhoCedula = 30;
 int grade[20][10] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0,-4, 0, 0, 0, 0},
+                    {0, 0, 0, 0, -4, -4, -4, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -370,6 +370,7 @@ void move_T_Down(){
         for(int j = 9; j >= 0; j--){
             if(grade[i][j] < 0 && countdown < 4){
                 cout << "NAO TA FUNFANDO";
+                cout << countdown;
                 countdown++;
                 grade[i][j] = 0;
                 grade[i + 1][j] = id;
