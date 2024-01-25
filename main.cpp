@@ -321,14 +321,14 @@ void move_T_Right(){
 }
 
 void move_T_Down(){
-    for(int i = 0; i < 20; i++){
-        for(int j = 0; j < 10; j++){
-            if(grade[i][j] < 0){
-                grade[i][j] = 0;
-                grade[i + 1][j] = id;
-            }
-        }
-    }
+    // for(int i = 0; i < 20; i++){
+    //     for(int j = 0; j < 10; j++){
+    //         if(grade[i][j] < 0){
+    //             grade[i][j] = 0;
+    //             grade[i + 1][j] = id;
+    //         }
+    //     }
+    // }
                 if(can_Move_T_Down()){
                     grade[Y][X] = 0;
                     grade[Y][X-1] = 0;
