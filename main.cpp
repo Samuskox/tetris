@@ -158,13 +158,16 @@ int main () {
             PlayerControlling = false;
         }
         //Mode Psycho
-        // for(int i = 0; i< 20; i++){
-        //         for(int j=0; j<10;j++){
-        //             if(grade[i][j] > 0){
-        //                 grade[i][j] = GetRandomValue(1,7);
-        //             }
-        //         }
-        //     }
+        // if(seconds%5 ==0){
+        //      for(int i = 0; i< 20; i++){
+        //          for(int j=0; j<10;j++){
+        //              if(grade[i][j] > 0){
+        //                  grade[i][j] = GetRandomValue(1,7);
+        //              }
+        //          }
+        //      }
+        // }
+        
 
         ClearBackground(RAYWHITE);
 
@@ -341,7 +344,7 @@ void CreateTetraminoe(){
         }
 }
 
-void rotate_Array(double angle){
+void rotate_4x4_Array(double angle){
     int newX;
     int newY;
     //Convert Degree to Radians
