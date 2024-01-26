@@ -7,8 +7,8 @@ using namespace std;
 int tamanhoCedula = 30;
 int grade[20][10] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, -4, -4, -4, 0, 0, 0},
-                    {0, 0, 0, 0, 0, -4, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -30,8 +30,12 @@ int modoRotacao = 0;
 int id = -4;
 int idPlayer = id * -1;
 int seconds = 0;
+int coolDown = 0;
+bool PlayerControlling = false;
+int movePerSecond = 1;
 
 void tetraminoe(int id);
+void CreateTetraminoe();
 
 void move_Down();
 void move_Left();
@@ -42,6 +46,8 @@ bool can_Move_Down();
 bool can_Move_Left();
 bool can_Move_Right();
 bool can_Rotate();
+
+void rotate_Array(double angle);
 
 int main () {
 
@@ -123,17 +129,42 @@ int main () {
         }
 
         tetraminoe(id);
+        if(PlayerControlling == false){
+            CreateTetraminoe();
+            PlayerControlling = true;
+        }
         
-            
+        //gravity
         if(seconds == 60){
             // id = GetRandomValue(1,7);
             seconds = 0;
             if(can_Move_Down()){
                 move_Down();
+            } else {
+                coolDown++;
+                cout << coolDown << " ";
             }
-            
-        
         }
+
+        if(coolDown == 4){
+            for(int i = 0; i< 20; i++){
+                for(int j=0; j<10;j++){
+                    if(grade[i][j] < 0){
+                        grade[i][j] = grade[i][j]*-1;
+                    }
+                }
+            }
+            coolDown = 0;
+            PlayerControlling = false;
+        }
+        //Mode Psycho
+        // for(int i = 0; i< 20; i++){
+        //         for(int j=0; j<10;j++){
+        //             if(grade[i][j] > 0){
+        //                 grade[i][j] = GetRandomValue(1,7);
+        //             }
+        //         }
+        //     }
 
         ClearBackground(RAYWHITE);
 
@@ -251,4 +282,70 @@ bool can_Move_Right(){
         }
     }
     return true;
+}
+
+void rotate(){
+    
+}
+
+void CreateTetraminoe(){
+        int numRandom = GetRandomValue(-1,-7);
+        id = numRandom;
+        switch (numRandom)
+        {
+        case -1:
+            grade[1][5] = -1;
+            grade[2][5] = -1;
+            grade[3][5] = -1;
+            grade[4][5] = -1;
+            /* code */
+            break;
+        case -2:
+            grade[1][5] = -2;
+            grade[1][6] = -2;
+            grade[2][5] = -2;
+            grade[2][6] = -2;
+            break;
+        case -3:
+            grade[1][5] = -3;
+            grade[2][5] = -3;
+            grade[1][4] = -3;
+            grade[2][6] = -3;
+            break;
+        case -4:
+            grade[1][5] = -4;
+            grade[2][5] = -4;
+            grade[2][4] = -4;
+            grade[2][6] = -4;
+            break;
+        case -5:
+            grade[1][5] = -5;
+            grade[2][5] = -5;
+            grade[3][5] = -5;
+            grade[3][6] = -5;
+            break;
+        case -6:
+            grade[1][5] = -6;
+            grade[2][5] = -6;
+            grade[2][4] = -6;
+            grade[1][6] = -6;
+            break;
+        case -7:
+            grade[1][5] = -7;
+            grade[2][5] = -7;
+            grade[3][5] = -7;
+            grade[3][4] = -7;
+        default:
+        
+            break;
+        }
+}
+
+void rotate_Array(double angle){
+    int newX;
+    int newY;
+    //Convert Degree to Radians
+    angle *= PI/180;
+    //newX = x * cos(angle) - y * sin(angle);
+    //newY = x * sin(angle) + y * cos(angle);
 }
