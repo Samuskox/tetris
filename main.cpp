@@ -25,7 +25,14 @@ int grade[20][10] = {{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {1, 0, 0, 0, 0, 0, 0, 0, 0, 4},
                     {1, 0, 0, 0, 0, 0, 2, 2, 4, 4},
                     {1, 1, 1, 0, 1, 1, 2, 2, 0, 4}};
-//int valorCedula;
+
+int array4x4[4][4] = {{0,0,0,0},
+                      {0,0,0,0},
+                      {0,0,0,0},
+                      {0,0,0,0}};
+int array3x3[3][3] = {{0,0,0},
+                      {0,0,0},
+                      {0,0,0}};
 int modoRotacao = 0;
 int id = -4;
 int idPlayer = id * -1;
@@ -33,6 +40,11 @@ int seconds = 0;
 int coolDown = 0;
 bool PlayerControlling = false;
 int movePerSecond = 1;
+
+int X = 3;
+int Y = 1;
+int X2 = 6;
+int Y2 = 4;
 
 void tetraminoe(int id);
 void CreateTetraminoe();
@@ -53,6 +65,8 @@ int main () {
 
     const int screenWidth = 300;
     const int screenHeight = 600;
+
+    
 
     InitWindow(screenWidth, screenHeight, "My first TETRIS program!");
     SetTargetFPS(60);
@@ -144,6 +158,14 @@ int main () {
                 coolDown++;
                 cout << coolDown << " ";
             }
+
+        //     for(int linhas = 0; linhas < 20; linhas++){
+        // for(int colunas = 0; colunas < 10; colunas++){
+        //     std::cout << grade[linhas][colunas] << " ";
+        // }
+        // std::cout << endl;
+        //}
+
         }
 
         if(coolDown == 4){
@@ -205,6 +227,9 @@ void move_Down(){
             }
         }
     }
+
+    Y++;
+    Y2++;
 }
 
 void move_Left(){
@@ -289,10 +314,111 @@ bool can_Move_Right(){
 
 void rotate(){
     
+    
+    for(int i=Y; i<=Y2;i++){
+        for(int j=X; j<=X2;j++){
+            cout << grade[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    cout << endl;
+    int i2 = 0;
+    for(int i=Y; i<=Y2;i++){
+        int j2 = 0;
+        for(int j=X; j<=X2;j++){
+
+            array4x4[i2][j2] = grade[i][j];
+            j2++;
+        }
+        i2++;
+    }
+
+
+
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++){
+            cout << array4x4[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    i2 = X;
+    int j2 = Y;
+    for(int i=3; i>=0;i--){
+        j2 = Y;
+        for(int j=0; j<4;j++){
+
+            grade[j2][i2] = array4x4[i][j];
+            j2++;
+        }
+        i2++;
+    }
+
+    cout << endl;
+    for(int i=Y; i<=Y2;i++){
+        for(int j=X; j<=X2;j++){
+            cout << grade[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    // rotate array3x3
+        
+    // for(int i=Y; i<=Y2;i++){
+    //     for(int j=X; j<=X2;j++){
+    //         cout << grade[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+    // cout << endl;
+    // int i2 = 0;
+    // for(int i=Y; i<=Y2;i++){
+    //     int j2 = 0;
+    //     for(int j=X; j<=X2;j++){
+
+    //         array3x3[i2][j2] = grade[i][j];
+    //         j2++;
+    //     }
+    //     i2++;
+    // }
+
+
+
+    // for(int i=0;i<3;i++){
+    //     for(int j=0;j<3;j++){
+    //         cout << array3x3[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+    // i2 = X;
+    // int j2 = Y;
+    // for(int i=2; i>=0;i--){
+    //     j2 = Y;
+    //     for(int j=0; j<3;j++){
+
+    //         grade[j2][i2] = array3x3[i][j];
+    //         j2++;
+    //     }
+    //     i2++;
+    // }
+
+    // cout << endl;
+    // for(int i=Y; i<=Y2;i++){
+    //     for(int j=X; j<=X2;j++){
+    //         cout << grade[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+
 }
 
+
 void CreateTetraminoe(){
-        int numRandom = GetRandomValue(-1,-7);
+        int numRandom = GetRandomValue(-2,-7);
         id = numRandom;
         switch (numRandom)
         {
