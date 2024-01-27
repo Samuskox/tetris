@@ -43,8 +43,8 @@ int movePerSecond = 1;
 
 int X = 3;
 int Y = 1;
-int X2 = 6;
-int Y2 = 4;
+int X2 = 5;
+int Y2 = 3;
 
 void tetraminoe(int id);
 void CreateTetraminoe();
@@ -58,8 +58,6 @@ bool can_Move_Down();
 bool can_Move_Left();
 bool can_Move_Right();
 bool can_Rotate();
-
-void rotate_Array(double angle);
 
 int main () {
 
@@ -168,7 +166,7 @@ int main () {
 
         }
 
-        if(coolDown == 4){
+        if(coolDown == 3){
             for(int i = 0; i< 20; i++){
                 for(int j=0; j<10;j++){
                     if(grade[i][j] < 0){
@@ -178,6 +176,10 @@ int main () {
             }
             coolDown = 0;
             PlayerControlling = false;
+            X = 3;
+            Y = 1;
+            X2 = 5;
+            Y2 = 3;
         }
         //Mode Psycho
         // if(seconds%5 ==0){
@@ -243,6 +245,9 @@ void move_Left(){
             }
         }
     }
+    X--;
+    X2--;
+
 }
 
 void move_Right(){
@@ -256,6 +261,8 @@ void move_Right(){
             }
         }
     }
+    X++;
+    X2++;
 }
 
 bool can_Move_Down(){
@@ -313,9 +320,17 @@ bool can_Move_Right(){
 }
 
 void rotate(){
+
+    int i2 = 0;
+    int j2 = 0;
     
-    
-    for(int i=Y; i<=Y2;i++){
+
+    switch (id)
+    {
+    case -1:{
+             Y2++;
+        X2++;
+         for(int i=Y; i<=Y2;i++){
         for(int j=X; j<=X2;j++){
             cout << grade[i][j] << " ";
         }
@@ -363,29 +378,38 @@ void rotate(){
         cout << endl;
     }
 
-    // rotate array3x3
         
-    // for(int i=Y; i<=Y2;i++){
+        Y2--;
+        X2--;
+    }
+        break;
+    case -2:
+        //for square
+        break;
+    default:
+    //visualization of grade
+    //     for(int i=Y; i<=Y2;i++){
     //     for(int j=X; j<=X2;j++){
     //         cout << grade[i][j] << " ";
     //     }
     //     cout << endl;
     // }
+    //cout << endl;
+    i2 = 0;
 
-    // cout << endl;
-    // int i2 = 0;
-    // for(int i=Y; i<=Y2;i++){
-    //     int j2 = 0;
-    //     for(int j=X; j<=X2;j++){
+    //passing values of grade to the array
+    for(int i=Y; i<=Y2;i++){
+        int j2 = 0;
+        for(int j=X; j<=X2;j++){
 
-    //         array3x3[i2][j2] = grade[i][j];
-    //         j2++;
-    //     }
-    //     i2++;
-    // }
-
+            array3x3[i2][j2] = grade[i][j];
+            j2++;
+        }
+        i2++;
+    }
 
 
+    //visualization of the array
     // for(int i=0;i<3;i++){
     //     for(int j=0;j<3;j++){
     //         cout << array3x3[i][j] << " ";
@@ -393,18 +417,20 @@ void rotate(){
     //     cout << endl;
     // }
 
-    // i2 = X;
-    // int j2 = Y;
-    // for(int i=2; i>=0;i--){
-    //     j2 = Y;
-    //     for(int j=0; j<3;j++){
+    i2 = X;
+    j2 = Y;
+    //Passing values of array to the grade
+    for(int i=2; i>=0;i--){
+        j2 = Y;
+        for(int j=0; j<3;j++){
 
-    //         grade[j2][i2] = array3x3[i][j];
-    //         j2++;
-    //     }
-    //     i2++;
-    // }
+            grade[j2][i2] = array3x3[i][j];
+            j2++;
+        }
+        i2++;
+    }
 
+    //visualization after rotate!
     // cout << endl;
     // for(int i=Y; i<=Y2;i++){
     //     for(int j=X; j<=X2;j++){
@@ -412,13 +438,13 @@ void rotate(){
     //     }
     //     cout << endl;
     // }
-
-
+        break;
+    }
 }
 
 
 void CreateTetraminoe(){
-        int numRandom = GetRandomValue(-2,-7);
+        int numRandom = GetRandomValue(-1,-7);
         id = numRandom;
         switch (numRandom)
         {
@@ -436,45 +462,38 @@ void CreateTetraminoe(){
             grade[2][6] = -2;
             break;
         case -3:
-            grade[1][5] = -3;
-            grade[2][5] = -3;
             grade[1][4] = -3;
-            grade[2][6] = -3;
+            grade[2][4] = -3;
+            grade[1][3] = -3;
+            grade[2][5] = -3;
             break;
         case -4:
-            grade[1][5] = -4;
-            grade[2][5] = -4;
+            grade[1][4] = -4;
             grade[2][4] = -4;
-            grade[2][6] = -4;
+            grade[2][3] = -4;
+            grade[2][5] = -4;
             break;
         case -5:
-            grade[1][5] = -5;
-            grade[2][5] = -5;
+            grade[1][4] = -5;
+            grade[2][4] = -5;
+            grade[3][4] = -5;
             grade[3][5] = -5;
-            grade[3][6] = -5;
             break;
         case -6:
-            grade[1][5] = -6;
-            grade[2][5] = -6;
+            grade[1][4] = -6;
             grade[2][4] = -6;
-            grade[1][6] = -6;
+            grade[2][3] = -6;
+            grade[1][5] = -6;
             break;
         case -7:
-            grade[1][5] = -7;
-            grade[2][5] = -7;
-            grade[3][5] = -7;
+            grade[1][4] = -7;
+            grade[2][4] = -7;
             grade[3][4] = -7;
+            grade[3][3] = -7;
         default:
         
             break;
         }
 }
 
-void rotate_4x4_Array(double angle){
-    int newX;
-    int newY;
-    //Convert Degree to Radians
-    angle *= PI/180;
-    //newX = x * cos(angle) - y * sin(angle);
-    //newY = x * sin(angle) + y * cos(angle);
-}
+
