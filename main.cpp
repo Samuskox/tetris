@@ -496,4 +496,7 @@ void CreateTetraminoe(){
         }
 }
 
+bool can_Rotate(){
+
+}
 
