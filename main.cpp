@@ -330,15 +330,17 @@ void rotate(){
     case -1:{
              Y2++;
         X2++;
-         for(int i=Y; i<=Y2;i++){
-        for(int j=X; j<=X2;j++){
-            cout << grade[i][j] << " ";
-        }
-        cout << endl;
-    }
+    //      for(int i=Y; i<=Y2;i++){
+    //     for(int j=X; j<=X2;j++){
+    //         cout << grade[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
 
     cout << endl;
     int i2 = 0;
+
+    //passing values of the grade to the array
     for(int i=Y; i<=Y2;i++){
         int j2 = 0;
         for(int j=X; j<=X2;j++){
@@ -351,13 +353,13 @@ void rotate(){
 
 
 
-    for(int i=0;i<4;i++){
-        for(int j=0;j<4;j++){
-            cout << array4x4[i][j] << " ";
-        }
-        cout << endl;
-    }
-
+    // for(int i=0;i<4;i++){
+    //     for(int j=0;j<4;j++){
+    //         cout << array4x4[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+    //Passing values of array to the grade
     i2 = X;
     int j2 = Y;
     for(int i=3; i>=0;i--){
@@ -370,13 +372,14 @@ void rotate(){
         i2++;
     }
 
-    cout << endl;
-    for(int i=Y; i<=Y2;i++){
-        for(int j=X; j<=X2;j++){
-            cout << grade[i][j] << " ";
-        }
-        cout << endl;
-    }
+    //visualization after rotate!
+    // cout << endl;
+    // for(int i=Y; i<=Y2;i++){
+    //     for(int j=X; j<=X2;j++){
+    //         cout << grade[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
 
         
         Y2--;
@@ -397,16 +400,7 @@ void rotate(){
     //cout << endl;
     i2 = 0;
 
-    //passing values of grade to the array
-    for(int i=Y; i<=Y2;i++){
-        int j2 = 0;
-        for(int j=X; j<=X2;j++){
 
-            array3x3[i2][j2] = grade[i][j];
-            j2++;
-        }
-        i2++;
-    }
 
 
     //visualization of the array
@@ -497,6 +491,39 @@ void CreateTetraminoe(){
 }
 
 bool can_Rotate(){
+    int i2 = 0;
+    int j2 = 0;
+    switch (id)
+    {
+    case -1:{
 
+    }
+    i2 = 0;
+    //passing values of the grade to the array
+    for(int i=Y; i<=Y2;i++){
+        j2 = 0;
+        for(int j=X; j<=X2;j++){
+
+            array4x4[i2][j2] = grade[i][j];
+            j2++;
+        }
+        i2++;
+    }
+
+    for(int i = 0;i<4;i++){
+        for(int j = 0; j<4;j++){
+            if(array4x4)
+        }
+    }
+
+        break;
+    case -2:
+        return true;
+        break;
+    
+    default:
+
+        break;
+    }
 }
 
